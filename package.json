@@ -1,0 +1,19 @@
+{
+  "name": "array-methods-and-callbacks",
+  "version": "1.0.0",
+  "description": "*Note*: Please add the LIVE server extension to your visual studio code and use it for this project. https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer - this will make viewing your data easier.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devandapaige/Array-Methods-and-Callbacks.git"
+  },
+  "author": "Amanda Nelson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devandapaige/Array-Methods-and-Callbacks/issues"
+  },
+  "homepage": "https://github.com/devandapaige/Array-Methods-and-Callbacks#readme"
+}
