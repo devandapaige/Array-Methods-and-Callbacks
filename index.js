@@ -62,9 +62,7 @@ function getWinners(callback, stats) {
     } else if (item["Home Team Goals"] < item["Away Team Goals"]) {
       winners.push(`${item["Away Team Name"]}`);
     } else {
-      winners.push(
-        `it was a tie! Both ${item["Home Team Name"]} and ${item["Away Team Name"]}`
-      );
+      winners.push(item["Win conditions"].split(" ")[0]);
     }
   });
   return winners;
@@ -108,7 +106,7 @@ function getAverageGoals(data) {
       return acc + index["Away Team Goals"] / data.length;
     }, 0)
   );
-  return `    Avg. Home Team Goals: ${avgHomeGoals}, Avg. Away Team Goals ${avgAwayGoals} `;
+  return `    Avg. Home Team Goals: ${avgHomeGoals}, Avg. Away Team Goals ${avgAwayGoals}`;
 }
 
 console.log(`***Task #6:`);
@@ -121,11 +119,32 @@ console.log(getAverageGoals(fifaData));
 Hint: Investigate your data to find "team initials"!
 Hint: use `.reduce` */
 
-function getCountryWins(/* code here */) {
-  /* code here */
+function getCountryWins(callback, stats, initials) {
+  const winnerinit = callback(stats).map((item) => {
+    if (item["Home Team Goals"] > item["Away Team Goals"]) {
+      return item["Home Team Initials"];
+    } else if (item["Home Team Goals"] < item["Away Team Goals"]) {
+      return item["Away Team Initials"];
+    } else {
+      return item["Win conditions"].split(" ")[0].slice(0, 3).toUpperCase();
+    }
+  });
+  const initTotalWins = winnerinit.reduce((total, item) => {
+    if (item === initials) {
+      return (total += 1);
+    } else {
+      return total;
+    }
+  }, 0);
+
+  return `${initials} has ${initTotalWins} World Cup Final Wins`;
 }
 
-getCountryWins();
+console.log(`~~~STRETCH #1~~~`);
+console.log(`ITA should be 4 / ESP should be 1 / FRG should be 3`);
+console.log(getCountryWins(getFinals, fifaData, "ITA"));
+console.log(getCountryWins(getFinals, fifaData, "ESP"));
+console.log(getCountryWins(getFinals, fifaData, "FRG"));
 
 /* Stretch 3: Write a function called getGoals() that accepts a parameter `data` and returns the team with the most goals score per appearance (average goals for) in the World Cup finals */
 
